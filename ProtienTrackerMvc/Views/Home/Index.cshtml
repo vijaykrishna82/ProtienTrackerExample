@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Protein Tracker ";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h2>Protein Tracker</h2>
+
+@section scripts{
+    <script type="text/javascript" >
+        $(document).ready(function () {
+
+            $("#select-user").change(UpdateUserData);
+
+            PopulateSelectUsers();
+        });
+
+        var Users;
+
+        function PopulateSelectUsers() {
+            var selectUser = $('#select-user');
+            selectUser.empty();
+            $.getJSON("api/users", function(data) {
+                Users = data.Users;
+
+                for (var i = 0; i < Users.length; i++) {
+                    selectUser.append($("<option></option>").attr("value", Users[i].Id).text(Users[i].Name));
+                }
+
+                UpdateUserData();
+            });
+        }
+
+        function AddNewUser() {
+            var goal = $('#goal').val();
+            var name = $('#name').val();
+
+            $.post("api/users", { "Name": name, "Goal": goal }).done(PopulateSelectUsers);
+
+            $('#goal').val("");
+            $('#name').val("");
+        }
+
+        function AddProtein() {
+            var amount = $('#amount').val();
+            var userId = $('#select-user').val();
+
+            $.post("api/users/" + userId, {"Amount": amount}, function(data) {
+
+                for (var i = 0; i < Users.length; i++) {
+                    if (Users[i].Id == userId)
+                        Users[i].Total = data.NewTotal;
+                }
+
+                UpdateUserData();
+
+            }, "json");
+        }
+
+        function UpdateUserData() {
+            var index = $('#select-user')[0].selectedIndex;
+            if (index < 0)
+                return;
+
+            $('#user-goal').text(Users[index].Goal);
+            $('#user-total').text(Users[index].Total);
+        }
+    </script>
+}
+
+<div>
+    <label for="select-user">Select a user</label>
+    <select id="select-user"></select>
+</div>
+
+<hr />
+
+<div>
+    <p><b>Total</b>: <span id="user-total"></span>&nbsp;<b>Goal</b>: <span id="user-goal"></span></p>
+
+</div>
+
+<div>
+    <h2>Add protein</h2>
+    <label for="amount">Amount</label>
+    <input id="amount" type="text" /><br />
+    <input id="add-button" type="button" value="Add" onclick="AddProtein()" />
+</div>
+
+<hr />
+
+<div>
+    <h2>Add new user</h2>
+    <label for="name">Name</label>
+    <input id="name" type="text" /><br />
+    <label for="goal">Goal</label>
+    <input id="goal" type="text" /><br />
+    <input id="add-new-user-button" type="button" value="Add" onclick="AddNewUser()" />
+</div>
+
+
+
