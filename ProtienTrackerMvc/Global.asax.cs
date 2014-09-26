@@ -4,6 +4,7 @@ using System.Web.Routing;
 using ProtienTrackerMvc.Api;
 using ServiceStack;
 using ServiceStack.Mvc;
+using ServiceStack.Redis;
 
 namespace ProtienTrackerMvc
 {
@@ -34,6 +35,9 @@ namespace ProtienTrackerMvc
             {
                 ControllerBuilder.Current.SetControllerFactory(new FunqControllerFactory(container));
                 SetConfig(new HostConfig {HandlerFactoryPath = "api"});
+
+                container.Register<IRedisClientsManager>(c => new PooledRedisClientManager());
+                container.Register<IUserRepository>(c => new UserRepository(c.Resolve<IRedisClientsManager>()));
             }
         }
     }
