@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtienTrackerMvc", "ProtienTrackerMvc\ProtienTrackerMvc.csproj", "{CD924871-5772-489C-989C-66D80302F872}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProteinTrackerContract", "ProteinTrackerContract\ProteinTrackerContract.csproj", "{3F5596C3-962C-40E6-B01E-AA161116B68A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CD924871-5772-489C-989C-66D80302F872}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD924871-5772-489C-989C-66D80302F872}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD924871-5772-489C-989C-66D80302F872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F5596C3-962C-40E6-B01E-AA161116B68A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F5596C3-962C-40E6-B01E-AA161116B68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F5596C3-962C-40E6-B01E-AA161116B68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F5596C3-962C-40E6-B01E-AA161116B68A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿namespace ProtienTrackerMvc.Api
+﻿namespace ProteinTrackerContract.Data
 {
     public class User
     {

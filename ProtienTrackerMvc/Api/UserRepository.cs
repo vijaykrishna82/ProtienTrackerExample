@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ProteinTrackerContract.Data;
 using ServiceStack.Redis;
 
 namespace ProtienTrackerMvc.Api
@@ -20,7 +20,7 @@ namespace ProtienTrackerMvc.Api
             using (var redisClient = RedisClientsManager.GetClient())
             {
                 var redisUsers = redisClient.As<User>();
-                var user = new User {Name = request.Name, Goal = request.Goal, Id = redisUsers.GetNextSequence()};
+                var user = new User { Name = request.Name, Goal = request.Goal, Id = redisUsers.GetNextSequence() };
                 redisUsers.Store(user);
 
                 return user.Id;
@@ -44,6 +44,7 @@ namespace ProtienTrackerMvc.Api
                 return redisUsers.GetById(id);
             }
         }
+
         public void UpdateUser(User user)
         {
             using (var redisClient = RedisClientsManager.GetClient())
@@ -53,12 +54,11 @@ namespace ProtienTrackerMvc.Api
             }
         }
 
-        #endregion
+        #endregion IUserRepository Members
     }
 
     public interface IUserRepository
     {
-
         long AddUser(AddUser user);
 
         IEnumerable<User> GetUsers();

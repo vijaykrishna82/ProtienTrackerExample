@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServiceStack;
+﻿using ServiceStack;
 
-namespace ProtienTrackerMvc.Api
+namespace ProteinTrackerContract.Data
 {
     [Route("/users/{userid}", "POST")]
    public  class AddProtien
