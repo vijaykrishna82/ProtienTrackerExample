@@ -3,7 +3,7 @@
 namespace ProteinTrackerContract.Data
 {
     [Route("/users", "POST")]
-    public class AddUser
+    public class AddUser : IReturn<AddUserResponse>
     {
         public string Name { get; set; }
 
